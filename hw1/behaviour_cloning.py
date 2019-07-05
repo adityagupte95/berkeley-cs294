@@ -125,15 +125,8 @@ def eval_model(observations, actions, expert, rollouts):
             eval_actions.append(pred_action)
             eval_observations.append(obs)
             obs, reward, done, info = env.step(pred_action)
-            env.render()
-            step=step+1
-            total_reward=total_reward+reward
-        returns.append(total_reward)
-    avg_return= np.mean(returns)
-    return observations,actions,returns, avg_return
 
-def main():
-
+def main ():
     observations,actions = process_expert_data("Humanoid-v2")
     train_model(observations, actions)
     eval_observations,eval_actions,returns,avg_return=eval_model(observations,actions,"Humanoid-v2",20)
